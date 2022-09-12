@@ -7724,7 +7724,7 @@ function fixResponseChunkedTransferBadEnding(request, errorCallback) {
 }
 
 // src/index.ts
-var apiUrl = "https://artifiction.io";
+var apiHost = "pkgs.artifiction.io";
 async function run() {
   try {
     await doWork();
@@ -7742,7 +7742,7 @@ async function doWork() {
   }
   const github_token = await core.getIDToken("artifiction.io");
   core.setSecret(github_token);
-  const response = await fetch(`${apiUrl}/token`, {
+  const response = await fetch(`https://${apiHost}/token`, {
     method: "POST",
     headers: { authorization: `Bearer ${github_token}` }
   });
@@ -7757,7 +7757,7 @@ async function doWork() {
   console.log("Configuring Artifiction for", tools.join(", "));
   core.exportVariable(
     "PIP_INDEX_URL",
-    `https://token:${encodedToken}@pkgs.artifiction.io/r/gh/${process.env.GITHUB_REPOSITORY_OWNER}/contents/pypi/simple/`
+    `https://token:${encodedToken}@${apiHost}/r/gh/${process.env.GITHUB_REPOSITORY_OWNER}/contents/pypi/simple/`
   );
   core.exportVariable("POETRY_HTTP_BASIC_ARTIFICTION_USERNAME", "token");
   core.exportVariable("POETRY_HTTP_BASIC_ARTIFICTION_PASSWORD", token);
