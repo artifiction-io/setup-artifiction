@@ -1,7 +1,7 @@
 import * as core from '@actions/core';
 import fetch from 'node-fetch';
 
-const apiUrl = 'https://artifiction.io';
+const apiHost = 'pkgs.artifiction.io';
 
 async function run() {
     try {
@@ -24,7 +24,7 @@ async function doWork() {
     core.setSecret(github_token);
 
     // Exchange GitHub OIDC token for Artifiction token
-    const response = await fetch(`${apiUrl}/token`, {
+    const response = await fetch(`https://${apiHost}/token`, {
         method: 'POST',
         headers: { authorization: `Bearer ${github_token}` },
     });
@@ -42,7 +42,7 @@ async function doWork() {
     // Configure pip
     core.exportVariable(
         'PIP_INDEX_URL',
-        `https://token:${encodedToken}@pkgs.artifiction.io/r/gh/${process.env.GITHUB_REPOSITORY_OWNER}/contents/pypi/simple/`,
+        `https://token:${encodedToken}@${apiHost}/r/gh/${process.env.GITHUB_REPOSITORY_OWNER}/contents/pypi/simple/`,
     );
 
     // Configure poetry config
