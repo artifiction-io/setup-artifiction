@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "strict": true,
+    "strictNullChecks": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "useUnknownInCatchVariables": false,
+    "removeComments": true,
+    "typeRoots": [],
+    "types": ["node"],
+    "composite": true,
+    "declaration": true,
+    "sourceMap": false,
+    "importHelpers": true,
+    "target": "ES2021",
+    "lib": [
+      "ES2021",
+    ],
+    "rootDir": "./src",
+    "outDir": "./dist"
+  },
+  "include": ["src"],
+}

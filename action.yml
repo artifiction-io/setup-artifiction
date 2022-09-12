@@ -1,0 +1,10 @@
+name: 'Setup Artifiction'
+description: 'Setup a GitHub workflow to use Artifiction for artifacts resolution.'
+author: 'Artifiction'
+inputs:
+  tools:
+    description: 'List of tools to configure'
+    required: false
+runs:
+  using: 'node16'
+  main: 'dist/index.js'

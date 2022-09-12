@@ -1,0 +1,46 @@
+{
+  "name": "setup-artifacts",
+  "version": "0.0.0",
+  "private": true,
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js",
+    "check:depcheck": "depcheck",
+    "check:typecheck": "tsc --noEmit",
+    "check": "run-p check:*",
+    "preinstall": "pnpx only-allow pnpm"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": true,
+    "trailingComma": "all",
+    "tabWidth": 4,
+    "printWidth": 120,
+    "arrowParens": "avoid"
+  },
+  "eslintIgnore": [
+    "/node_modules",
+    "/dist"
+  ],
+  "dependencies": {
+    "@actions/core": "^1.9.1",
+    "node-fetch": "^3.2.10"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.16",
+    "@typescript-eslint/eslint-plugin": "5.36.2",
+    "@typescript-eslint/parser": "5.36.2",
+    "depcheck": "1.4.3",
+    "esbuild": "^0.15.7",
+    "eslint": "8.23.1",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "npm-run-all": "4.1.5",
+    "prettier": "2.7.1",
+    "typescript": "4.8.3"
+  },
+  "packageManager": "pnpm@7.11.0",
+  "author": "Ensemble Technologies",
+  "license": "UNLICENSED",
+  "description": ""
+}
