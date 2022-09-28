@@ -37,6 +37,6 @@ jobs:
       - uses: ./
       - run: corepack enable
       - name: Test Yarn
-        working-directory: /tmp
+        working-directory: ${{ env.RUNNER_TEMP }}
         run: >-
           yarn global add luxon --verbose --prefix ./yarn-prefix
