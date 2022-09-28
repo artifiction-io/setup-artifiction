@@ -26,3 +26,15 @@ jobs:
       - name: Test NPM
         run: >-
           npm install --verbose luxon
+
+  yarn:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./
+      - name: Test Yarn
+        run: >-
+          yarn add --verbose luxon
