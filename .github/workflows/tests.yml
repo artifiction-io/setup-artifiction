@@ -25,4 +25,18 @@ jobs:
       - uses: ./
       - name: Test NPM
         run: >-
-          npm install --verbose luxon
+          npm install --global luxon --verbose
+
+  yarn:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./
+      - run: corepack enable
+      - name: Test Yarn
+        working-directory: /tmp
+        run: >-
+          yarn global add luxon --verbose --prefix ./yarn-prefix
