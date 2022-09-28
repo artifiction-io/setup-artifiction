@@ -7755,12 +7755,15 @@ async function doWork() {
   core.setSecret(encodedToken);
   const tools = core.getMultilineInput("tools").flatMap((tool) => tool.split("\\s+"));
   console.log("Configuring Artifiction for", tools.join(", "));
+  const githubOwner = process.env.GITHUB_REPOSITORY_OWNER;
   core.exportVariable(
     "PIP_INDEX_URL",
-    `https://token:${encodedToken}@${apiHost}/r/gh/${process.env.GITHUB_REPOSITORY_OWNER}/contents/pypi/simple/`
+    `https://token:${encodedToken}@${apiHost}/r/gh/${githubOwner}/contents/pypi/simple/`
   );
   core.exportVariable("POETRY_HTTP_BASIC_ARTIFICTION_USERNAME", "token");
   core.exportVariable("POETRY_HTTP_BASIC_ARTIFICTION_PASSWORD", token);
+  core.exportVariable("npm_config_registry", `https://${apiHost}/r/gh/${githubOwner}/contents/npm/`);
+  core.exportVariable("npm_config__auth", new Buffer(`token:${token}`).toString("base64"));
 }
 run();
 /*! fetch-blob. MIT License. Jimmy Wärting <https://jimmy.warting.se/opensource> */
