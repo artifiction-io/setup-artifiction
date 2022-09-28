@@ -35,6 +35,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./
+      - run: corepack enable
       - name: Test Yarn
         run: >-
           yarn add --verbose luxon

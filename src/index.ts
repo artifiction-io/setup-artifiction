@@ -35,6 +35,8 @@ async function doWork() {
     core.setSecret(token);
     const encodedToken = encodeURIComponent(token);
     core.setSecret(encodedToken);
+    const basicAuth = Buffer.from(`token:${token}`).toString('base64');
+    core.setSecret(basicAuth);
 
     const tools = core.getMultilineInput('tools').flatMap(tool => tool.split('\\s+'));
     console.log('Configuring Artifiction for', tools.join(', '));
@@ -53,7 +55,7 @@ async function doWork() {
 
     // Configure NPM
     core.exportVariable("npm_config_registry", `https://${apiHost}/r/gh/${githubOwner}/contents/npm/`);
-    core.exportVariable("npm_config__auth", new Buffer(`token:${token}`).toString('base64'));
+    core.exportVariable("npm_config__auth", basicAuth);
 }
 
 run();
