@@ -7753,6 +7753,8 @@ async function doWork() {
   core.setSecret(token);
   const encodedToken = encodeURIComponent(token);
   core.setSecret(encodedToken);
+  const basicAuth = Buffer.from(`token:${token}`).toString("base64");
+  core.setSecret(basicAuth);
   const tools = core.getMultilineInput("tools").flatMap((tool) => tool.split("\\s+"));
   console.log("Configuring Artifiction for", tools.join(", "));
   const githubOwner = process.env.GITHUB_REPOSITORY_OWNER;
@@ -7763,7 +7765,8 @@ async function doWork() {
   core.exportVariable("POETRY_HTTP_BASIC_ARTIFICTION_USERNAME", "token");
   core.exportVariable("POETRY_HTTP_BASIC_ARTIFICTION_PASSWORD", token);
   core.exportVariable("npm_config_registry", `https://${apiHost}/r/gh/${githubOwner}/contents/npm/`);
-  core.exportVariable("npm_config__auth", new Buffer(`token:${token}`).toString("base64"));
+  core.exportVariable("npm_config_always_auth", "true");
+  core.exportVariable("npm_config__auth", basicAuth);
 }
 run();
 /*! fetch-blob. MIT License. Jimmy Wärting <https://jimmy.warting.se/opensource> */
