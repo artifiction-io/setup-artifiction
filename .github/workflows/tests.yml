@@ -25,7 +25,7 @@ jobs:
       - uses: ./
       - name: Test NPM
         run: >-
-          npm install --verbose luxon
+          npm install --global luxon --verbose
 
   yarn:
     runs-on: ubuntu-latest
