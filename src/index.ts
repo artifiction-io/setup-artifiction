@@ -55,6 +55,7 @@ async function doWork() {
 
     // Configure NPM
     core.exportVariable("npm_config_registry", `https://${apiHost}/r/gh/${githubOwner}/contents/npm/`);
+    core.exportVariable("npm_config_always_auth", "true");
     core.exportVariable("npm_config__auth", basicAuth);
 }
 
