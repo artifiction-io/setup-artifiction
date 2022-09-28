@@ -14,3 +14,15 @@ jobs:
       - name: Test Pip
         run: >-
           pip install -v python-language-server
+
+  npm:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./
+      - name: Test NPM
+        run: >-
+          npm install --verbose luxon
