@@ -1,5 +1,8 @@
 name: 'Setup Artifiction'
 description: 'Setup a GitHub workflow to use Artifiction for artifacts resolution.'
+branding:
+  icon: package
+  color: purple
 author: 'Artifiction'
 inputs:
   tools:
